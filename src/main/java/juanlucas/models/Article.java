@@ -39,7 +39,13 @@ public class Article {
 
 	public boolean save() {
 		DAO =  new ArticleDAO();
-		return DAO.save(this);
+		boolean result = false;
+		if(this.id>0) {
+			result = DAO.update(this);
+		}else {
+			result = DAO.save(this);
+		}
+		return result;
 	}
 
 	public void setId(int id) {

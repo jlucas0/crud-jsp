@@ -40,7 +40,8 @@
 		<h2>Editar artículo</h2>
 	</header>
 	<main class="container-md">
-		<form method="post" action="../../ArticlesController?action=edit" class="mt-5 col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
+		<form method="post" action="../../ArticlesController?action=update" class="mt-5 col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
+			<input type="hidden" value="<%= article.getId() %>" name="id">
 			<div class="mb-3">
 			    <label for="description" class="form-label">Descripción</label>
 			    <input type="text" class="form-control" name="description" id="description" value="<%= article.getDescription() %>" required>
@@ -52,7 +53,7 @@
 			  <div class="mb-3">
 			    <label for="category" class="form-label">Categoría</label>
 			    <select class="form-select" id="category" name="category">
-			    	<option></option>
+			    	<option value=""></option>
 			    	<% 
 			    		ArrayList<Category> list = CategoriesController.list();
 			    		for(int i = 0; i<list.size();i++){
@@ -65,7 +66,7 @@
 			  <div class="mb-3">
 			    <label for="provider" class="form-label">Proveedor</label>
 			    <select class="form-select" id="provider" name="provider">
-			    	<option></option>
+			    	<option value=""></option>
 			    	<% 
 			    		ArrayList<Provider> providers = ProvidersController.list();
 			    		for(int i = 0; i<providers.size();i++){

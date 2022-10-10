@@ -35,7 +35,10 @@ public class ArticlesController extends HttpServlet {
 		String result[] = new String[3];
 		switch(action) {
 			case "register":
-				result = doRegister(request);
+				result = doSave(request);
+				break;
+			case "update":
+				result = doSave(request);
 				break;
 			default:
 				
@@ -54,7 +57,7 @@ public class ArticlesController extends HttpServlet {
 		response.setHeader("Location", destination);
 	}
 
-	private String[] doRegister(HttpServletRequest request) throws ServletException, IOException {
+	private String[] doSave(HttpServletRequest request) throws ServletException, IOException {
 		String description = request.getParameter("description");
 		String result[] = new String[3];
 		result[0] = "ko";
@@ -64,13 +67,21 @@ public class ArticlesController extends HttpServlet {
 				float price = Float.parseFloat(request.getParameter("price"));
 				if(price >= 0) {
 					Article article = new Article();
+					if(request.getParameter("id")!=null) {
+						int id = Integer.parseInt(request.getParameter("id"));
+						article = Article.find(id);
+					}
 					article.setDescription(description);
 					article.setPrice(price);
 					if(request.getParameter("category")!=null&&request.getParameter("category")!="") {
 						article.setCategory_id(Integer.parseInt(request.getParameter("category")));
+					}else {
+						article.setCategory_id(-1);
 					}
 					if(request.getParameter("provider")!=null&&request.getParameter("provider")!="") {
 						article.setProvider_id(Integer.parseInt(request.getParameter("provider")));
+					}else {
+						article.setProvider_id(-1);
 					}
 					if(article.save()) {
 						result[0] = "ok";
@@ -92,7 +103,6 @@ public class ArticlesController extends HttpServlet {
 		
 		return result;
 	}
-	
 	public static ArrayList<Article> list(){
 		return Article.list();
 	}

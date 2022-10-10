@@ -123,4 +123,36 @@ public class ArticleDAO {
 		
 		return result;
 	}
+	
+	public boolean update(Article article) {
+		boolean result = true;
+		conector = new DBConector();
+		connection = conector.getConnection();
+		String sql = "UPDATE articles SET";
+				
+		sql += " description='"+article.getDescription()+"'";
+		sql += ", price="+article.getPrice();
+		sql += ", category=" + (article.getCategory_id() > 0 ? article.getCategory_id() : "NULL");
+		sql += ", provider=" + (article.getProvider_id() > 0 ? article.getProvider_id() : "NULL");
+		sql += " WHERE id="+article.getId()+";";
+		try {
+			
+			prepared = connection.prepareStatement(sql);
+			int updated = prepared.executeUpdate(sql);
+			if(updated<0) {
+				result = false;
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			result = false;
+		}
+		 
+		 
+		conector.disconnect();
+		
+		return result;
+	}
 }
