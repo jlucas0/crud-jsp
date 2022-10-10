@@ -3,7 +3,9 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="juanlucas.models.Category" %>
 <%@ page import="juanlucas.models.Article" %>
+<%@ page import="juanlucas.models.Provider" %>
 <%@ page import="juanlucas.controllers.CategoriesController" %>
+<%@ page import="juanlucas.controllers.ProvidersController" %>
 <%@ page import="juanlucas.controllers.ArticlesController" %>
 <% 
 	/*@ include file = "..jsp"*/
@@ -47,7 +49,7 @@
 			    <label for="price" class="form-label">Precio</label>
 			    <input type="number" step="0.01" min="0" class="form-control" name="price" value="<%= article.getPrice() %>" id="price" required>
 			  </div>
-			   <div class="mb-3">
+			  <div class="mb-3">
 			    <label for="category" class="form-label">Categoría</label>
 			    <select class="form-select" id="category" name="category">
 			    	<option></option>
@@ -60,7 +62,20 @@
 			    	<% } %>
 			    </select>
 			  </div>
-			  <button type="submit" class="btn btn-primary">Registrar</button>
+			  <div class="mb-3">
+			    <label for="provider" class="form-label">Proveedor</label>
+			    <select class="form-select" id="provider" name="provider">
+			    	<option></option>
+			    	<% 
+			    		ArrayList<Provider> providers = ProvidersController.list();
+			    		for(int i = 0; i<providers.size();i++){
+							Provider provider = providers.get(i);
+			    	%>
+			    		<option value="<%= provider.getId() %>" <%= article.getProvider_id()==provider.getId() ? "selected" : "" %>><%= provider.getName() %></option>
+			    	<% } %>
+			    </select>
+			  </div>
+			  <button type="submit" class="btn btn-success">Actualizar</button>
 		</form>
 	</main>
 </body>

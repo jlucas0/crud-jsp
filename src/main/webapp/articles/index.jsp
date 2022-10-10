@@ -57,7 +57,13 @@
 							<% } %>
 						</td>
 						<td><%= article.getPrice() %> €</td>
-						<td>-</td>
+						<td>
+							<% if(article.getProvider() != null) { %>
+								<%= article.getProvider().getName() %>
+							<% }else{ %>
+								-
+							<% } %>
+						</td>
 						<td class="text-center">
 							<a href="edit?id=<%= article.getId() %>" class="btn btn-secondary">Editar</a>
 							<button class="btn btn-danger deleteBtn" data-id="">Borrar</button>

@@ -29,4 +29,14 @@
     <servlet-name>CategoriesController</servlet-name>
     <url-pattern>/CategoriesController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProvidersController</display-name>
+    <servlet-name>ProvidersController</servlet-name>
+    <servlet-class>juanlucas.controllers.ProvidersController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProvidersController</servlet-name>
+    <url-pattern>/ProvidersController</url-pattern>
+  </servlet-mapping>
 </web-app>

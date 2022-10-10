@@ -11,6 +11,8 @@ public class Article {
 	private float price;
 	private int category_id;
 	private Category category;
+	private int provider_id;
+	private Provider provider;
 	
 	private static ArticleDAO DAO;
 	
@@ -86,5 +88,25 @@ public class Article {
 	
 	public void associateCategory(int id,String title) {
 		this.setCategory(new Category(id,title));
+	}
+
+	public int getProvider_id() {
+		return provider_id;
+	}
+
+	public void setProvider_id(int provider_id) {
+		this.provider_id = provider_id;
+	}
+
+	public Provider getProvider() {
+		return provider;
+	}
+
+	public void setProvider(Provider provider) {
+		this.provider = provider;
+	}
+	
+	public void associateProvider(int id,String name) {
+		this.setProvider(new Provider(id,name));
 	}
 }

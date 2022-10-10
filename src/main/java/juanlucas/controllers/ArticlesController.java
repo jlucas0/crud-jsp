@@ -69,6 +69,9 @@ public class ArticlesController extends HttpServlet {
 					if(request.getParameter("category")!=null&&request.getParameter("category")!="") {
 						article.setCategory_id(Integer.parseInt(request.getParameter("category")));
 					}
+					if(request.getParameter("provider")!=null&&request.getParameter("provider")!="") {
+						article.setProvider_id(Integer.parseInt(request.getParameter("provider")));
+					}
 					if(article.save()) {
 						result[0] = "ok";
 						result[1] = "Artículo registrado correctamente";

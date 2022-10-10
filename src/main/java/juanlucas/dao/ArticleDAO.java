@@ -21,7 +21,7 @@ public class ArticleDAO {
 		
 		 conector = new DBConector();
 		 connection = conector.getConnection();
-		 String sql = "SELECT articles.*, categories.title FROM articles LEFT JOIN categories ON articles.category = categories.id";
+		 String sql = "SELECT articles.*, categories.title, providers.name FROM articles LEFT JOIN categories ON articles.category = categories.id LEFT JOIN providers ON articles.provider = providers.id";
 		 try {
 			prepared = connection.prepareStatement(sql);
 			ResultSet result = prepared.executeQuery();
@@ -33,6 +33,10 @@ public class ArticleDAO {
 				if(result.getInt("category") > 0) {
 					record.setCategory_id(result.getInt("category"));
 					record.associateCategory(result.getInt("category"), result.getString("title"));
+				}
+				if(result.getInt("provider") > 0) {
+					record.setProvider_id(result.getInt("provider"));
+					record.associateProvider(result.getInt("provider"), result.getString("name"));
 				}
 				
 				data.add(record);
@@ -65,7 +69,10 @@ public class ArticleDAO {
 				
 				if(result.getInt("category") > 0) {
 					article.setCategory_id(result.getInt("category"));
-					article.associateCategory(result.getInt("category"), result.getString("title"));
+				}
+				
+				if(result.getInt("provider") > 0) {
+					article.setProvider_id(result.getInt("provider"));
 				}
 
 			}
@@ -90,7 +97,8 @@ public class ArticleDAO {
 		sql += "'"+article.getDescription()+"'";
 		sql += ","+article.getPrice();
 		sql += "," + (article.getCategory_id() > 0 ? article.getCategory_id() : "NULL");
-		sql += ",NULL);";
+		sql += "," + (article.getProvider_id() > 0 ? article.getProvider_id() : "NULL");
+		sql += ");";
 		try {
 			
 			prepared = connection.prepareStatement(sql);
