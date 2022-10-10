@@ -16,12 +16,15 @@ public class Article {
 	
 	private static ArticleDAO DAO;
 	
-	public Article() {}
+	public Article() {
+		DAO = new ArticleDAO();
+	}
 	
 	public Article(int id,String description,float price) {
 		this.id = id;
 		this.setDescription(description);
 		this.setPrice(price);
+		DAO = new ArticleDAO();
 	}
 	
 	
@@ -38,7 +41,6 @@ public class Article {
 	}
 
 	public boolean save() {
-		DAO =  new ArticleDAO();
 		boolean result = false;
 		if(this.id>0) {
 			result = DAO.update(this);
@@ -46,6 +48,10 @@ public class Article {
 			result = DAO.save(this);
 		}
 		return result;
+	}
+	
+	public boolean delete() {
+		return DAO.remove(this.id);
 	}
 
 	public void setId(int id) {

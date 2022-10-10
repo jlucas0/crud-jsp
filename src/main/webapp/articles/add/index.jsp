@@ -18,6 +18,15 @@
 		<h2>Añadir artículo</h2>
 	</header>
 	<main class="container-md">
+		<% 
+			if(session.getAttribute("msg") != null){
+				String[] message = (String[])session.getAttribute("msg");
+		%>
+				<div class="mt-2 alert <%= message[0] == "ok" ? "alert-success" : "alert-danger" %>"><%= message[1] %></div>
+		<% 
+				session.removeAttribute("msg");
+			}
+		%>
 		<form method="post" action="../../ArticlesController?action=register" class="mt-5 col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
 			<div class="mb-3">
 			    <label for="description" class="form-label">Descripción</label>

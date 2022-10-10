@@ -66,7 +66,7 @@
 						</td>
 						<td class="text-center">
 							<a href="edit?id=<%= article.getId() %>" class="btn btn-secondary">Editar</a>
-							<button class="btn btn-danger deleteBtn" data-id="">Borrar</button>
+							<button class="btn btn-danger deleteBtn" onclick="deleteArticle(<%= article.getId() %>)">Borrar</button>
 						</td>
 					</tr>
 				<%						
@@ -79,7 +79,11 @@
 	
 	<script type="text/javascript">
 	
-		//const myModalAlternative = new bootstrap.Modal('#myModal', options);
+		function deleteArticle(id){
+			if(confirm("¿Realmente quieres borrar el artículo?")){
+				window.location.href = "../ArticlesController?action=delete&id="+id;
+			}
+		}
 	
 	</script>
 </body>
