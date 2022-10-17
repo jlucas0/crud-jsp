@@ -1,0 +1,11 @@
+@charset "UTF-8";
+.form-label{
+	display:block;
+	margin-bottom:5px;
+}
+.form-control,.form-select{
+	width:100%;
+	font-size:1.2rem;
+	box-sizing: border-box;
+	padding:2px;
+}

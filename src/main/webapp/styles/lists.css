@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.table-responsive{
+	width:100%;
+	overflow-y:auto;
+	margin-top:30px;
+}
+.table{
+	min-width:100%;
+}
+.table th{
+	text-align:center;
+	font-weight:bold;
+}
+.table-striped tbody tr:nth-child(even){
+	background-color:#d0c9c9;
+}
+.table-hover tbody tr:hover{
+	background-color:#bab4b4;
+}
+.table td{
+	padding:5px;
+}
