@@ -7,6 +7,10 @@
 <%@ page import="juanlucas.controllers.CategoriesController" %>
 <%@ page import="juanlucas.controllers.ProvidersController" %>
 <%@ page import="juanlucas.controllers.ArticlesController" %>
+<%@ page import="juanlucas.controllers.AuthController" %>
+<%
+	AuthController.checkAuth(request, response);
+%>
 <% 
 	/*@ include file = "..jsp"*/
 	boolean redirect = true;
@@ -25,7 +29,7 @@
 		session.setAttribute("msg", error );
 		response.setStatus(302);
 		response.setHeader("Location", "..");
-	}
+	}else{
 %>
 <!DOCTYPE html>
 <html>
@@ -91,3 +95,4 @@
 	</main>
 </body>
 </html>
+<% } %>

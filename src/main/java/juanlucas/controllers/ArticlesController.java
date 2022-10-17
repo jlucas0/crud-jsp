@@ -14,9 +14,8 @@ import java.util.ArrayList;
  * Servlet implementation class ArticlesController
  */
 public class ArticlesController extends HttpServlet {
-	private static final long serialVersionUID = 2L;
+	private static final long serialVersionUID = 1L;
 	private String index = "articles";
-	private String add = "add";
 	private HttpSession session;
        
 	/**
@@ -24,20 +23,22 @@ public class ArticlesController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
-		String result[] = new String[3];
-		result[1] = "Acción no encontrada";
+		String result[] = new String[2];
+		String returnUrl = "";
 		switch(action) {
 			case "register":
 				result = doSave(request);
+				returnUrl = "add";
 				break;
 			case "update":
 				result = doSave(request);
+				returnUrl = "edit";
 				break;
 			case "delete":
 				result = doRemove(request);
 				break;
 			default:
-				
+				result[1] = "Acción no encontrada";				
 		}
 		
 		session = request.getSession();
@@ -45,7 +46,7 @@ public class ArticlesController extends HttpServlet {
 		String destination = index;
 		
 		if(result[0] == "ko") {
-			destination = result[2];
+			destination += "/"+returnUrl;
 		}
 
 		session.setAttribute("msg", result );
@@ -62,9 +63,8 @@ public class ArticlesController extends HttpServlet {
 
 	private String[] doSave(HttpServletRequest request) throws ServletException, IOException {
 		String description = request.getParameter("description");
-		String result[] = new String[3];
+		String result[] = new String[2];
 		result[0] = "ko";
-		result[2] = index+"/"+add;
 		if(description != null && description != "") {
 			if(request.getParameter("price")!= null && request.getParameter("price") != "") {
 				float price = Float.parseFloat(request.getParameter("price"));

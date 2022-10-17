@@ -5,12 +5,17 @@
 	overflow-y:auto;
 	margin-top:30px;
 }
+.table-responsive .table td{
+	white-space: nowrap;
+}
 .table{
 	min-width:100%;
+	margin: 20px 0;
 }
 .table th{
 	text-align:center;
 	font-weight:bold;
+	padding-bottom: 5px;
 }
 .table-striped tbody tr:nth-child(even){
 	background-color:#d0c9c9;

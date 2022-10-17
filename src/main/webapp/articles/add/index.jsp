@@ -5,6 +5,10 @@
 <%@ page import="juanlucas.models.Provider" %>
 <%@ page import="juanlucas.controllers.CategoriesController" %>
 <%@ page import="juanlucas.controllers.ProvidersController" %>
+<%@ page import="juanlucas.controllers.AuthController" %>
+<%
+	AuthController.checkAuth(request, response);
+%>
 <!DOCTYPE html>
 <html>
 <head>

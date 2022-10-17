@@ -3,6 +3,10 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="juanlucas.models.Article" %>
 <%@ page import="juanlucas.controllers.ArticlesController" %>
+<%@ page import="juanlucas.controllers.AuthController" %>
+<%
+	AuthController.checkAuth(request, response);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +17,15 @@
 </head>
 <body>
 	<header class="border-bottom d-flex justify-content-between p-3">
-		<a href=".." class="btn btn-primary">Volver</a>
 		<h2>Artículos</h2>
+		<nav>
+			<a href="">Proveedores</a>
+			<a href="">Categorías</a>
+			<a href="">Administradores</a>
+			<span><%= request.getSession().getAttribute("loged") %> - <a href="../AuthController?action=logout">Salir</a></span>
+		</nav>		
 	</header>
-	<main class="container-sm mt-5">
+	<main class="container mt-5">
 		<div class="text-end">
 			<a href="add" class="btn btn-success">Añadir</a>
 		</div>
