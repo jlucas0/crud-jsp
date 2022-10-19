@@ -18,7 +18,7 @@
 CREATE TABLE IF NOT EXISTS `admins` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `password` varchar(150) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;

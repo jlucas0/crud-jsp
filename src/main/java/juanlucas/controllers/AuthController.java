@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpSession;
 import juanlucas.models.Admin;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 
 /**
  * Servlet implementation class AuthController
@@ -29,9 +31,6 @@ public class AuthController extends HttpServlet {
 				result = doLogin(request);
 				destination = ".";
 				returnUrl = "login";
-				if(result[0] == "ok") {
-					destination = ".";
-				}
 				break;
 			case "logout":
 				request.getSession().removeAttribute("loged");
@@ -51,7 +50,7 @@ public class AuthController extends HttpServlet {
 		if(result[0] == "ko") {
 			destination += "/"+returnUrl;
 		}
-		if(!action.equals("login")&&!action.equals("logout")) {
+		if((!action.equals("login")&&!action.equals("logout")) || (action.equals("login")&&destination.equals("./login"))) {
 			session.setAttribute("msg", result );
 		}
 		response.setStatus(302);
@@ -72,8 +71,7 @@ public class AuthController extends HttpServlet {
 		String result[] = new String[2];
 		result[0] = "ko";
 		if(admin != null) {
-			
-			if(admin.getPassword().equals(request.getParameter("password"))) {
+			if(admin.getPassword().equals(getSHA512(request.getParameter("password")))) {
 				request.getSession().setAttribute("loged", admin.getUsername());
 				result[0] = "ok";
 			}else {
@@ -93,4 +91,19 @@ public class AuthController extends HttpServlet {
 			response.setHeader("Location", "/ProyectoCRUD/login/");
 		}
 	}	
+
+	private String getSHA512(String input){
+
+		String toReturn = null;
+		try {
+		    MessageDigest digest = MessageDigest.getInstance("SHA-512");
+		    digest.reset();
+		    digest.update(input.getBytes("utf8"));
+		    toReturn = String.format("%0128x", new BigInteger(1, digest.digest()));
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+		
+		return toReturn;
+	}
 }
