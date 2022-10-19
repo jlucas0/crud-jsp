@@ -9,3 +9,7 @@
 	box-sizing: border-box;
 	padding:2px;
 }
+input::placeholder{
+	font-size:0.9rem;
+	font-style:italic;
+}

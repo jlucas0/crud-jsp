@@ -8,6 +8,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Gestor de Artículos</title>
 	<link href="styles/general.css" rel="stylesheet">
 </head>

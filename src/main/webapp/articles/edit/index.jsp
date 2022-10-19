@@ -35,6 +35,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Editar artículo</title>
 	<link href="../../styles/general.css" rel="stylesheet">
 	<link href="../../styles/forms.css" rel="stylesheet">
@@ -42,7 +43,7 @@
 <body>
 	<header class="border-bottom d-flex justify-content-between p-3">
 		<a href="../" class="btn btn-primary">Volver</a>
-		<h2>Editar artículo</h2>
+		<h2 id="tituloHeader">Editar artículo</h2>
 	</header>
 	<main class="container-md">
 		<% 

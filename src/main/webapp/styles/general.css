@@ -51,12 +51,19 @@
 	}
 
 /*BASE*/
+	*{
+		box-sizing:border-box;
+	}
 	body{
 		font-family:sans-serif;
 	}
 	h1{
 		font-size: 2rem;
 		margin: 15px 0;
+	}
+	#tituloHeader{
+		border: solid 1px;
+		padding: 3px;
 	}
 	h2{
 		font-size:1.8rem;

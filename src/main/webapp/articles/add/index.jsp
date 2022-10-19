@@ -13,6 +13,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Registrar artículo</title>
 	<link href="../../styles/general.css" rel="stylesheet">
 	<link href="../../styles/forms.css" rel="stylesheet">
@@ -20,7 +21,7 @@
 <body>
 	<header class="border-bottom d-flex justify-content-between p-3">
 		<a href="../" class="btn btn-primary">Volver</a>
-		<h2>Añadir artículo</h2>
+		<h2 id="tituloHeader">Añadir artículo</h2>
 	</header>
 	<main class="container-md">
 		<% 
@@ -35,11 +36,11 @@
 		<form method="post" action="../../ArticlesController?action=register" class="mt-5 col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
 			<div class="mb-3">
 			    <label for="description" class="form-label">Descripción</label>
-			    <input type="text" class="form-control" name="description" id="description" required>
+			    <input type="text" class="form-control" placeholder="Nombre visible del artículo" name="description" id="description" required>
 			  </div>
 			  <div class="mb-3">
 			    <label for="price" class="form-label">Precio</label>
-			    <input type="number" step="0.01" min="0" class="form-control" name="price" id="price" required>
+			    <input type="number" step="0.01" min="0" class="form-control" placeholder="Precio en €" name="price" id="price" required>
 			  </div>
 			  <div class="mb-3">
 			    <label for="category" class="form-label">Categoría</label>

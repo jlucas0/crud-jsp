@@ -11,13 +11,14 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Artículos</title>
 	<link href="../styles/general.css" rel="stylesheet">
 	<link href="../styles/lists.css" rel="stylesheet">
 </head>
 <body>
 	<header class="border-bottom d-flex justify-content-between p-3">
-		<h2>Artículos</h2>
+		<h2 id="tituloHeader">Artículos</h2>
 		<nav>
 			<a href="">Proveedores</a>
 			<a href="">Categorías</a>

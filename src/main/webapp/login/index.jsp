@@ -4,6 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Login</title>
 	<link href="../styles/general.css" rel="stylesheet">
 	<link href="../styles/forms.css" rel="stylesheet">
