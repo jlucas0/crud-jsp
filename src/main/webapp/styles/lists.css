@@ -26,3 +26,58 @@
 .table td{
 	padding:5px;
 }
+#botonBurger{
+	float: right;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    display:none;
+}
+#botonBurger div{
+	width: 21px;
+    height: 3px;
+    background-color: #000;
+    border-radius: 1px;
+    transition: all .3s ease;
+    line-height: 35px;
+    word-spacing: 1px;
+}
+#botonBurger div:nth-child(2){
+	margin: 5px 0;
+}
+#botonBurger.abierto div:nth-child(2){
+	opacity: 0;
+    width: 0;
+}
+#botonBurger.abierto div:nth-child(1) {
+    transform: rotate(45deg);
+    transform-origin: left top;
+    width: 23px;
+}
+#botonBurger.abierto div:nth-child(3) {
+    transform: rotate(-45deg);
+    transform-origin: left bottom;
+    width: 23px;
+}
+@media screen and (max-width:768px){
+	#botonBurger{
+		display:block;
+	}
+	#navMovil{
+		display:none;
+		position: absolute;
+	    right: 0;
+	    top: 0;
+	    flex-direction: column;
+	    bottom: 0;
+	    background: #ffffffe6;
+	    padding: 80px 20px 0;
+	    z-index: 1;
+	}
+	#navMovil.abierto{
+		display: flex;
+	}
+	#navMovil a, #navMovil span{
+		margin: 8px 0;
+	}
+}

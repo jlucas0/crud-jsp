@@ -19,7 +19,12 @@
 <body>
 	<header class="border-bottom d-flex justify-content-between p-3">
 		<h2 id="tituloHeader">Artículos</h2>
-		<nav>
+		<div id="botonBurger">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<nav id="navMovil">
 			<a href="">Proveedores</a>
 			<a href="">Categorías</a>
 			<a href="">Administradores</a>
@@ -87,7 +92,7 @@
 			</table>
 		</div>
 	</main>
-	
+	<script type="text/javascript" src="../scripts/menu.js"></script>
 	<script type="text/javascript">
 	
 		function deleteArticle(id){

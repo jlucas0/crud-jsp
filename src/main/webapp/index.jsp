@@ -15,7 +15,7 @@
 <body>
 	<main class="container pt-5">
 		<h1 class="text-center col-12">Gestiona el catálogo</h1>
-		<h3 class="text-center col-12">Selecciona una opción</h3>
+		<h3 class="text-center col-12" style="text-decoration:underline">Selecciona una opción</h3>
 		<div class="row mt-2">
 			<a href="articles" class="btn btn-primary col-8 offset-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">Artículos</a>
 		</div>
