@@ -27,19 +27,19 @@
 		</nav>		
 	</header>
 	<main class="container mt-5">
-		<div class="text-end">
+		<div class="col-3 offset-9 col-sm-2 offset-sm-10 col-lg-1 offset-lg-11">
 			<a href="add" class="btn btn-success">Añadir</a>
 		</div>
 		<% 
 			if(session.getAttribute("msg") != null){
 				String[] message = (String[])session.getAttribute("msg");
 		%>
-				<div class="mt-2 alert <%= message[0] == "ok" ? "alert-success" : "alert-danger" %>"><%= message[1] %></div>
+				<div class="mt-2 col-12 alert <%= message[0] == "ok" ? "alert-success" : "alert-danger" %>"><%= message[1] %></div>
 		<% 
 				session.removeAttribute("msg");
 			}
 		%>
-		<div class="table-responsive">
+		<div class="table-responsive col-12">
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>

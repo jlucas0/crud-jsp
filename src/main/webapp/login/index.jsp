@@ -15,7 +15,7 @@
 			if(session.getAttribute("msg") != null){
 				String[] message = (String[])session.getAttribute("msg");
 		%>
-				<div class="mt-2 alert <%= message[0] == "ok" ? "alert-success" : "alert-danger" %>"><%= message[1] %></div>
+				<div class="mt-2 col-12 alert <%= message[0] == "ok" ? "alert-success" : "alert-danger" %>"><%= message[1] %></div>
 		<% 
 				session.removeAttribute("msg");
 			}
