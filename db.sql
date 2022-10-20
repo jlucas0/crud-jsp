@@ -19,9 +19,10 @@ CREATE TABLE IF NOT EXISTS `admins` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL,
   `password` varchar(150) NOT NULL,
+  `superadmin` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -46,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(60) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -57,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `providers` (
   `address` varchar(200) DEFAULT NULL,
   `phone` varchar(12) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 

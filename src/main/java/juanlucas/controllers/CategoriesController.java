@@ -32,7 +32,7 @@ public class CategoriesController extends HttpServlet {
 				break;
 			case "update":
 				result = doSave(request);
-				returnUrl = "edit";
+				returnUrl = "edit?id="+request.getParameter("id");
 				break;
 			case "delete":
 				result = doRemove(request);

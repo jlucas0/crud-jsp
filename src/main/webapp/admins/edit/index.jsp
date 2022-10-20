@@ -1,19 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="juanlucas.models.Provider" %>
-<%@ page import="juanlucas.controllers.ProvidersController" %>
+<%@ page import="juanlucas.models.Admin" %>
 <%@ page import="juanlucas.controllers.AuthController" %>
 <%
-	boolean auth = AuthController.checkAuth(request, response);
+	boolean auth = AuthController.checkSuperAuth(request, response);
 %>
 <% 
 	/*@ include file = "..jsp"*/
 	boolean redirect = true;
-	Provider provider = null;
+	Admin admin = null;
 	if(request.getParameter("id")!=null && request.getParameter("id") != "" ){
-		provider = ProvidersController.find(request.getParameter("id"));
-		if(provider != null){
+		admin = AuthController.find(request.getParameter("id"));
+		if(admin != null){
 			redirect = false;
 		}
 	}
@@ -21,7 +20,7 @@
 	if(redirect){
 		String[] error = new String[2];
 		error[0] = "ko";
-		error[1] = "Proveedor no encontrado";
+		error[1] = "Administrador no encontrado";
 		session.setAttribute("msg", error );
 		response.setStatus(302);
 		response.setHeader("Location", "..");
@@ -32,14 +31,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Editar proveedor</title>
+	<title>Editar administrador</title>
 	<link href="../../styles/general.css" rel="stylesheet">
 	<link href="../../styles/forms.css" rel="stylesheet">
 </head>
 <body>
 	<header class="border-bottom d-flex justify-content-between p-3">
 		<a href="../" class="btn btn-primary">Volver</a>
-		<h2 id="tituloHeader">Editar proveedor</h2>
+		<h2 id="tituloHeader">Editar administrador</h2>
 	</header>
 	<main class="container-md">
 		<% 
@@ -51,19 +50,22 @@
 				session.removeAttribute("msg");
 			}
 		%>
-		<form method="post" action="../../ProvidersController?action=update" class="mt-5 col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
-			<input type="hidden" value="<%= provider.getId() %>" name="id">
+		<form method="post" action="../../AuthController?action=update" class="mt-5 col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
+			<input type="hidden" value="<%= admin.getId() %>" name="id">
 			<div class="mb-3">
-			    <label for="name" class="form-label">Nombre</label>
-			    <input type="text" class="form-control" name="name" id="name" value="<%= provider.getName() %>" required>
+			    <label for="username" class="form-label">Nombre</label>
+			    <input type="text" class="form-control" name="username" id="username" value="<%= admin.getUsername() %>" required>
 		  	</div>
 		  	<div class="mb-3">
-			    <label for="phone" class="form-label">Teléfono</label>
-			    <input type="text" class="form-control" name="phone" id="phone" value="<%= provider.getPhone() %>">
+			    <label for="password" class="form-label">Contraseña</label>
+			    <input type="password" class="form-control" name="password" id="password" placeholder="Nueva contraseña">
 		  	</div>
 		  	<div class="mb-3">
-			    <label for="address" class="form-label">Dirección</label>
-			    <input type="text" class="form-control" name="address" id="address" value="<%= provider.getAddress() %>">
+			    <label for="superadmin" class="form-label">Superadministrador</label>
+			    <select class="form-select" id="superadmin" name="superadmin">
+			    		<option value="n">No</option>
+			    		<option value="y" <%= (admin.isSuperadmin() ? "selected" : "") %>>Sí</option>
+			    </select>
 		  	</div>
 	    	<button type="submit" class="btn btn-success">Actualizar</button>
 		</form>

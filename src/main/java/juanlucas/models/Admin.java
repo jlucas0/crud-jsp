@@ -9,6 +9,7 @@ public class Admin {
 	private int id;
 	private String username;
 	private String password;
+	private boolean superadmin;
 	
 	private static AdminDAO DAO;
 	
@@ -87,5 +88,13 @@ public class Admin {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean isSuperadmin() {
+		return superadmin;
+	}
+
+	public void setSuperadmin(boolean superadmin) {
+		this.superadmin = superadmin;
 	}
 }

@@ -2,10 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="juanlucas.models.Article" %>
+<%@ page import="juanlucas.models.Admin" %>
 <%@ page import="juanlucas.controllers.ArticlesController" %>
 <%@ page import="juanlucas.controllers.AuthController" %>
 <%
-	AuthController.checkAuth(request, response);
+	boolean auth = AuthController.checkAuth(request, response);
+	if(auth){
+		Admin admin = (Admin)request.getSession().getAttribute("loged");
 %>
 <!DOCTYPE html>
 <html>
@@ -27,8 +30,10 @@
 		<nav id="navMovil">
 			<a href="../providers">Proveedores</a>
 			<a href="../categories">Categorías</a>
-			<a href="">Administradores</a>
-			<span><%= request.getSession().getAttribute("loged") %> - <a href="../AuthController?action=logout">Salir</a></span>
+			<% if(admin.isSuperadmin()){ %>
+				<a href="../admins">Administradores</a>
+			<% } %>
+			<span><%= admin.getUsername() %> - <a href="../AuthController?action=logout">Salir</a></span>
 		</nav>		
 	</header>
 	<main class="container mt-5">
@@ -104,3 +109,4 @@
 	</script>
 </body>
 </html>
+<% } %>

@@ -3,7 +3,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="juanlucas.controllers.AuthController" %>
 <%
-	AuthController.checkAuth(request, response);
+boolean auth = AuthController.checkAuth(request, response);
 %>
 <!DOCTYPE html>
 <html>

@@ -22,36 +22,40 @@ public class ArticlesController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter("action");
-		String result[] = new String[2];
-		String returnUrl = "";
-		switch(action) {
-			case "register":
-				result = doSave(request);
-				returnUrl = "add";
-				break;
-			case "update":
-				result = doSave(request);
-				returnUrl = "edit";
-				break;
-			case "delete":
-				result = doRemove(request);
-				break;
-			default:
-				result[1] = "Acción no encontrada";				
-		}
 		
-		session = request.getSession();
-
-		String destination = index;
+		if(AuthController.checkAuth(request, response)) {
 		
-		if(result[0] == "ko") {
-			destination += "/"+returnUrl;
+			String action = request.getParameter("action");
+			String result[] = new String[2];
+			String returnUrl = "";
+			switch(action) {
+				case "register":
+					result = doSave(request);
+					returnUrl = "add";
+					break;
+				case "update":
+					result = doSave(request);
+					returnUrl = "edit?id="+request.getParameter("id");
+					break;
+				case "delete":
+					result = doRemove(request);
+					break;
+				default:
+					result[1] = "Acción no encontrada";				
+			}
+			
+			session = request.getSession();
+	
+			String destination = index;
+			
+			if(result[0] == "ko") {
+				destination += "/"+returnUrl;
+			}
+	
+			session.setAttribute("msg", result );
+			response.setStatus(302);
+			response.setHeader("Location", destination);
 		}
-
-		session.setAttribute("msg", result );
-		response.setStatus(302);
-		response.setHeader("Location", destination);
 	}
 
 	/**

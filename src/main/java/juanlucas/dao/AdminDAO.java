@@ -29,7 +29,7 @@ public class AdminDAO {
 			while(result.next()){
 				
 				Admin record = new Admin(result.getInt("id"),result.getString("username"));
-								
+				record.setSuperadmin(result.getBoolean("superadmin"));
 				data.add(record);
 			}
 			
@@ -57,7 +57,7 @@ public class AdminDAO {
 			if(result.next()){
 				
 				admin = new Admin(result.getInt("id"),result.getString("username"),result.getString("password"));
-
+				admin.setSuperadmin(result.getBoolean("superadmin"));
 			}
 			
 		} catch (SQLException e) {
@@ -85,6 +85,7 @@ public class AdminDAO {
 			if(result.next()){
 				
 				admin = new Admin(result.getInt("id"),result.getString("username"),result.getString("password"));
+				admin.setSuperadmin(result.getBoolean("superadmin"));
 
 			}
 			
@@ -104,10 +105,11 @@ public class AdminDAO {
 		boolean result = true;
 		conector = new DBConector();
 		connection = conector.getConnection();
-		String sql = "INSERT INTO admins(username,password) VALUES (";
+		String sql = "INSERT INTO admins(username,password,superadmin) VALUES (";
 				
 		sql += "'"+admin.getUsername()+"'";
-		sql += ","+admin.getPassword();
+		sql += ",'"+admin.getPassword()+"'";
+		sql += ","+(admin.isSuperadmin() ? 1 : 0);
 		sql += ");";
 		try {
 			
@@ -141,7 +143,8 @@ public class AdminDAO {
 		String sql = "UPDATE admins SET";
 				
 		sql += " username='"+admin.getUsername()+"'";
-		sql += ", password="+admin.getPassword();
+		sql += ", password='"+admin.getPassword()+"'";
+		sql += ", superadmin="+(admin.isSuperadmin() ? 1 : 0);
 		sql += " WHERE id="+admin.getId()+";";
 		try {
 			

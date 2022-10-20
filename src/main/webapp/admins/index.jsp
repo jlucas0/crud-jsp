@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="juanlucas.models.Provider" %>
 <%@ page import="juanlucas.models.Admin" %>
 <%@ page import="juanlucas.controllers.ProvidersController" %>
 <%@ page import="juanlucas.controllers.AuthController" %>
 <%
-	boolean auth = AuthController.checkAuth(request, response);
+	boolean auth = AuthController.checkSuperAuth(request, response);
 	if(auth){
 		Admin admin = (Admin)request.getSession().getAttribute("loged");
 %>
@@ -15,13 +14,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Proveedores</title>
+	<title>Administradores</title>
 	<link href="../styles/general.css" rel="stylesheet">
 	<link href="../styles/lists.css" rel="stylesheet">
 </head>
 <body>
 	<header class="border-bottom d-flex justify-content-between p-3">
-		<h2 id="tituloHeader">Proveedores</h2>
+		<h2 id="tituloHeader">Administradores</h2>
 		<div id="botonBurger">
 			<div></div>
 			<div></div>
@@ -30,9 +29,7 @@
 		<nav id="navMovil">
 			<a href="../articles">Artículos</a>
 			<a href="../categories">Categorías</a>
-			<% if(admin.isSuperadmin()){ %>
-				<a href="../admins">Administradores</a>
-			<% } %>
+			<a href="../providers">Proveedores</a>
 			<span><%= admin.getUsername() %> - <a href="../AuthController?action=logout">Salir</a></span>
 		</nav>		
 	</header>
@@ -55,27 +52,23 @@
 					<tr>
 						<th>Código</th>
 						<th>Nombre</th>
-						<th>Teléfono</th>
-						<th>Dirección</th>
-						<th>Artículos</th>
+						<th>Super</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 				<% 
-					ArrayList<Provider> list = ProvidersController.list();
+					ArrayList<Admin> list = AuthController.list();
 					for(int i = 0; i<list.size();i++){
-						Provider provider = list.get(i);
+						Admin adminList = list.get(i);
 				%>
 					<tr>
-						<td><%= provider.getId() %></td>
-						<td><%= provider.getName() %></td>
-						<td><% if (provider.getPhone() != null) %><%= provider.getPhone() %></td>
-						<td><% if (provider.getAddress() != null) %><%= provider.getAddress() %></td>
-						<td><%= provider.getArticles() %></td>
+						<td><%= adminList.getId() %></td>
+						<td><%= adminList.getUsername() %></td>
+						<td><%= adminList.isSuperadmin() %></td>
 						<td class="text-center">
-							<a href="edit?id=<%= provider.getId() %>" class="btn btn-secondary">Editar</a>
-							<button class="btn btn-danger deleteBtn" onclick="deleteProvider(<%= provider.getId() %>)">Borrar</button>
+							<a href="edit?id=<%= adminList.getId() %>" class="btn btn-secondary">Editar</a>
+							<button class="btn btn-danger deleteBtn" onclick="deleteAdmin(<%= adminList.getId() %>)">Borrar</button>
 						</td>
 					</tr>
 				<%						
@@ -88,9 +81,9 @@
 	<script type="text/javascript" src="../scripts/menu.js"></script>
 	<script type="text/javascript">
 	
-		function deleteProvider(id){
-			if(confirm("¿Realmente quieres borrar el proveedor?")){
-				window.location.href = "../ProvidersController?action=delete&id="+id;
+		function deleteAdmin(id){
+			if(confirm("¿Realmente quieres borrar el administrador?")){
+				window.location.href = "../AuthController?action=delete&id="+id;
 			}
 		}
 	

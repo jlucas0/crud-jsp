@@ -5,7 +5,7 @@
 <%@ page import="juanlucas.controllers.CategoriesController" %>
 <%@ page import="juanlucas.controllers.AuthController" %>
 <%
-	AuthController.checkAuth(request, response);
+boolean auth = AuthController.checkAuth(request, response);
 %>
 <% 
 	/*@ include file = "..jsp"*/

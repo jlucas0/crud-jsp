@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
 <%@ page import="juanlucas.controllers.AuthController" %>
+<%@ page import="juanlucas.models.Admin" %>
 <%
-	AuthController.checkAuth(request, response);
+	boolean auth = AuthController.checkAuth(request, response);
+	if(auth){
+		Admin admin = (Admin)request.getSession().getAttribute("loged");
 %>
 <!DOCTYPE html>
 <html>
@@ -25,6 +28,12 @@
 		<div class="row mt-2">
 			<a href="providers" class="btn btn-primary col-8 offset-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">Proveedores</a>
 		</div>
+		<% if(admin != null && admin.isSuperadmin()){ %>
+			<div class="row mt-2">
+				<a href="admins" class="btn btn-primary col-8 offset-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">Administradores</a>
+			</div>
+		<% } %>
 	</main>
 </body>
 </html>
+<% } %>

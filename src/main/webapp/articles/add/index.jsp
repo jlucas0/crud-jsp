@@ -7,7 +7,7 @@
 <%@ page import="juanlucas.controllers.ProvidersController" %>
 <%@ page import="juanlucas.controllers.AuthController" %>
 <%
-	AuthController.checkAuth(request, response);
+boolean auth = AuthController.checkAuth(request, response);
 %>
 <!DOCTYPE html>
 <html>
