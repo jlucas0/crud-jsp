@@ -9,18 +9,47 @@ public class Provider {
 	private String name;
 	private String address;
 	private String phone;
+	private int articles;
 	
 	private static ProviderDAO DAO;
+	
+	public Provider() {}
 	
 	public Provider(int id, String name) {
 		this.id=id;
 		this.name=name;
 	}
 	
+	public Provider(int id, String name, int articles) {
+		this.id=id;
+		this.name=name;
+		this.articles = articles;
+	}
+	
 	public static ArrayList<Provider> list(){
 		DAO =  new ProviderDAO();	
 		return DAO.get();
 		
+	}
+	
+	public static Provider find(int id) {
+		DAO = new ProviderDAO();
+		Provider result = DAO.getById(id);
+		return result;
+	}
+	
+	public boolean save() {
+		boolean result = false;
+		if(this.id>0) {
+			result = DAO.update(this);
+		}else {
+			result = DAO.save(this);
+		}
+		return result;
+	}
+	
+	public boolean delete() {
+		return DAO.remove(this.id);
 	}
 	
 	public int getId() {
@@ -50,5 +79,13 @@ public class Provider {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public int getArticles() {
+		return articles;
+	}
+
+	public void setArticles(int articles) {
+		this.articles = articles;
 	}
 }

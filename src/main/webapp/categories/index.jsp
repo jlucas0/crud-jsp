@@ -25,7 +25,7 @@
 			<div></div>
 		</div>
 		<nav id="navMovil">
-			<a href="">Proveedores</a>
+			<a href="../providers">Proveedores</a>
 			<a href="../articles">Artículos</a>
 			<a href="">Administradores</a>
 			<span><%= request.getSession().getAttribute("loged") %> - <a href="../AuthController?action=logout">Salir</a></span>
