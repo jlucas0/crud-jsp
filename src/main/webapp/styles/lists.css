@@ -17,7 +17,7 @@
 	font-weight:bold;
 	padding-bottom: 5px;
 }
-.table-striped tbody tr:nth-child(even){
+.table-striped tbody tr:nth-child(odd){
 	background-color:#d0c9c9;
 }
 .table-hover tbody tr:hover{

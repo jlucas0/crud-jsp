@@ -20,7 +20,7 @@
 			<a href="articles" class="btn btn-primary col-8 offset-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">Artículos</a>
 		</div>
 		<div class="row mt-2">
-			<a href="" class="btn btn-primary col-8 offset-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">Categorías</a>
+			<a href="categories" class="btn btn-primary col-8 offset-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">Categorías</a>
 		</div>
 		<div class="row mt-2">
 			<a href="" class="btn btn-primary col-8 offset-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">Proveedores</a>

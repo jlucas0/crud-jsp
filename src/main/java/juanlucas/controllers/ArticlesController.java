@@ -90,7 +90,7 @@ public class ArticlesController extends HttpServlet {
 						result[0] = "ok";
 						result[1] = "Artículo registrado correctamente";
 					}else {
-						result[1] = "Error al guardar el artículo.";
+						result[1] = "Error al guardar el artículo";
 					}
 					
 				}else {
@@ -110,33 +110,32 @@ public class ArticlesController extends HttpServlet {
 
 	private String[] doRemove(HttpServletRequest request) throws ServletException, IOException {
 		
-		String result[] = new String[3];
+		String result[] = new String[2];
 		result[0] = "ko";
-		result[2] = index;
 		
-			if(request.getParameter("id")!= null && request.getParameter("id") != "") {
-				try {	
-					int id = Integer.parseInt(request.getParameter("id"));
-				
-					Article article = Article.find(id);
-					if(article!=null) {
-						if(article.delete()) {
-							result[0] = "ok";
-							result[1] = "Artículo eliminado correctamente";
-						}else {
-							result[1] = "Error al eliminar el artículo";
-						}
-					} else {
-						result[1] = "Artículo no encontrado";
+		if(request.getParameter("id")!= null && request.getParameter("id") != "") {
+			try {	
+				int id = Integer.parseInt(request.getParameter("id"));
+			
+				Article article = Article.find(id);
+				if(article!=null) {
+					if(article.delete()) {
+						result[0] = "ok";
+						result[1] = "Artículo eliminado correctamente";
+					}else {
+						result[1] = "Error al eliminar el artículo";
 					}
-					
-					
-				}catch(NumberFormatException e) {
-					result[1] = "ID incorrecto";
+				} else {
+					result[1] = "Artículo no encontrado";
 				}
-			}else {
+				
+				
+			}catch(NumberFormatException e) {
 				result[1] = "ID incorrecto";
 			}
+		}else {
+			result[1] = "ID incorrecto";
+		}
 		
 		return result;
 	}
